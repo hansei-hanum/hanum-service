@@ -1,6 +1,13 @@
-version: '2'
+version: '3'
 
 services:
+  hanum-pay:
+    build: ./services/hanum-pay
+    restart: always
+    depends_on:
+      - db
+      - cache
+
   nginx:
     image: nginx:stable
     restart: always
@@ -9,38 +16,37 @@ services:
       - ./services/nginx/www/:/var/www/html/
     ports:
       - 80:80
+    depends_on:
+      - hanum-pay
 
   db:
-    image: mariadb:10.4.12
+    image: mariadb:10.11
     restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=gksdnaSoju#1
-      - MYSQL_USER=hanum
-      - MYSQL_PASSWORD=gksdnaSoju#1
-      - MYSQL_DATABASE=hanum
+    env_file:
+      - ./.config/mysql.env
     volumes:
-      - .data/mysql:/var/lib/mysql
+      - ./.data/mysql/:/var/lib/mysql
+      # 서순주의
+      - ./services/hanum-pay/Database/hanum/:/docker-entrypoint-initdb.d/
+    ports:
+      - 3307:3306
     networks:
-      internal:
-
-
+      - default
+      - internal
     command:
-      [
-        mysqld,
-        --character-set-server=utf8mb4,
-        --collation-server=utf8mb4_unicode_ci,
-        --wait_timeout=28800,
-        --log-warnings=0
-      ]
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
 
   cache:
     image: redis:4
     restart: always
     volumes:
       - .data/redis:/data
+    ports:
+      - 6380:6379
     networks:
-      internal:
-
+      - default
+      - internal
 
 networks:
   default:
