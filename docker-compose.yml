@@ -10,6 +10,7 @@ services:
     depends_on:
       - db
       - cache
+      - auth-grpc
     ports:
       - 5510:80
     networks:
@@ -56,11 +57,6 @@ services:
     depends_on:
       - db
       - cache
-    ports:
-      - 50051:50051
-    networks:
-      - default
-      - internal
 
   ##############################
   ##          정보서버          ##
