@@ -1,6 +1,9 @@
 version: '3'
 
 services:
+  ##############################
+  ##          한움페이         ##
+  ##############################
   hanum-pay:
     build: ./services/hanum-pay
     restart: always
@@ -9,6 +12,17 @@ services:
       - cache
     ports:
       - 5510:80
+    networks:
+      - default
+      - internal
+  ##############################
+  ##     한움페이 대시보드     ##
+  ##############################
+  hanum-pay-dashboard:
+    build: ./services/hanum-pay-dashboard
+    restart: always
+    ports:
+      - 5512:80
     networks:
       - default
       - internal
@@ -23,6 +37,7 @@ services:
       - 80:80
     depends_on:
       - hanum-pay
+      - hanum-pay-dashboard
 
   db:
     image: mariadb:10.11
