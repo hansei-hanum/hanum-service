@@ -90,9 +90,8 @@ services:
   pay-bot:
     build: ./services/pay-bot
     restart: always
-    networks:
-      - default
-      - internal
+    env_file:
+      - ./.config/pay-bot.env
     depends_on:
       - db
 
