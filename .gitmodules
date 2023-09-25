@@ -10,3 +10,6 @@
 [submodule "services/auth"]
 	path = services/auth
 	url = https://github.com/hansei-hanum/hanum-backend-auth.git
+[submodule "services/pay-bot"]
+	path = services/pay-bot
+	url = https://github.com/hansei-hanum/hanum-pay-bot.git

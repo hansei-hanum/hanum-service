@@ -84,6 +84,18 @@ services:
       - hanum-pay
       - hanum-pay-dashboard
 
+  ##############################
+  ##        한움페이 충전봇       ##
+  ##############################
+  pay-bot:
+    build: ./services/pay-bot
+    restart: always
+    networks:
+      - default
+      - internal
+    depends_on:
+      - db
+
   db:
     image: mariadb:10.11
     restart: always
