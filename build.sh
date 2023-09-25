@@ -1,3 +1,4 @@
+git pull
 git submodule foreach git pull origin main
 sudo docker compose build
 
