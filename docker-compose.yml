@@ -16,6 +16,8 @@ services:
     networks:
       - default
       - internal
+    environment:
+      - TZ=Asia/Seoul
 
   ##############################
   ##     한움페이 대시보드     ##
@@ -28,6 +30,8 @@ services:
     networks:
       - default
       - internal
+    environment:
+      - TZ=Asia/Seoul
 
   ##############################
   ##          인증서버          ##
@@ -37,6 +41,7 @@ services:
     restart: always
     environment:
       - SERVER_TYPE=HTTP
+      - TZ=Asia/Seoul
     depends_on:
       - db
       - cache
@@ -54,6 +59,7 @@ services:
     restart: always
     environment:
       - SERVER_TYPE=GRPC
+      - TZ=Asia/Seoul
     depends_on:
       - db
       - cache
@@ -71,6 +77,8 @@ services:
       - internal
     depends_on:
       - auth-grpc
+    environment:
+      - TZ=Asia/Seoul
 
   nginx:
     image: nginx:stable
@@ -83,6 +91,8 @@ services:
     depends_on:
       - hanum-pay
       - hanum-pay-dashboard
+    environment:
+      - TZ=Asia/Seoul
 
   ##############################
   ##        한움페이 충전봇       ##
@@ -94,6 +104,8 @@ services:
       - ./.config/pay-bot.env
     depends_on:
       - db
+    environment:
+      - TZ=Asia/Seoul
 
   db:
     image: mariadb:10.11
@@ -124,6 +136,8 @@ services:
     networks:
       - default
       - internal
+    environment:
+      - TZ=Asia/Seoul
 
 networks:
   default:
