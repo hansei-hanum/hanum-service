@@ -7,3 +7,6 @@
 [submodule "services/info"]
 	path = services/info
 	url = https://github.com/hansei-hanum/hanum-backend-info.git
+[submodule "services/auth"]
+	path = services/auth
+	url = https://github.com/hansei-hanum/hanum-backend-auth.git

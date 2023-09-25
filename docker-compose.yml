@@ -15,6 +15,7 @@ services:
     networks:
       - default
       - internal
+
   ##############################
   ##     한움페이 대시보드     ##
   ##############################
@@ -27,9 +28,14 @@ services:
       - default
       - internal
 
+  ##############################
+  ##          인증서버          ##
+  ##############################
   auth:
     build: ./services/auth
     restart: always
+    environment:
+      - SERVER_TYPE=HTTP
     depends_on:
       - db
       - cache
@@ -39,6 +45,26 @@ services:
       - default
       - internal
 
+  ##############################
+  ##   인증 마이크로서비스 GRPC    ##
+  ##############################
+  auth-grpc:
+    build: ./services/auth
+    restart: always
+    environment:
+      - SERVER_TYPE=GRPC
+    depends_on:
+      - db
+      - cache
+    ports:
+      - 50051:50051
+    networks:
+      - default
+      - internal
+
+  ##############################
+  ##          정보서버          ##
+  ##############################
   info:
     build: ./services/info
     restart: always
@@ -47,6 +73,8 @@ services:
     networks:
       - default
       - internal
+    depends_on:
+      - auth-grpc
 
   nginx:
     image: nginx:stable
