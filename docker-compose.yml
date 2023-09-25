@@ -27,6 +27,27 @@ services:
       - default
       - internal
 
+  auth:
+    build: ./services/auth
+    restart: always
+    depends_on:
+      - db
+      - cache
+    ports:
+      - 5511:80
+    networks:
+      - default
+      - internal
+
+  info:
+    build: ./services/info
+    restart: always
+    ports:
+      - 5513:80
+    networks:
+      - default
+      - internal
+
   nginx:
     image: nginx:stable
     restart: always
