@@ -1,3 +1,6 @@
 [submodule "services/hanum-pay"]
 	path = services/hanum-pay
 	url = https://github.com/hansei-hanum/HanumPay.git
+[submodule "services/info"]
+	path = services/info
+	url = https://github.com/hansei-hanum/hanum-backend-info.git
