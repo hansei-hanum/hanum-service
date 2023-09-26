@@ -60,6 +60,8 @@ services:
     restart: always
     environment:
       - TZ=Asia/Seoul
+    env_file:
+      - ./.config/festival.env
     depends_on:
       - db
       - auth-grpc
