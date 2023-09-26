@@ -13,3 +13,6 @@
 [submodule "services/pay-bot"]
 	path = services/pay-bot
 	url = https://github.com/hansei-hanum/hanum-pay-bot.git
+[submodule "services/festival"]
+	path = services/festival
+	url = https://github.com/hansei-hanum/hanum-backend-festival.git

@@ -52,6 +52,24 @@ services:
       - internal
 
   ##############################
+  ##        한세어울림한마당       ##
+  ##############################
+
+  festival:
+    build: ./services/festival
+    restart: always
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - db
+      - auth-grpc
+    ports:
+      - 5514:80
+    networks:
+      - default
+      - internal
+
+  ##############################
   ##   인증 마이크로서비스 GRPC    ##
   ##############################
   auth-grpc:
@@ -93,6 +111,8 @@ services:
     depends_on:
       - hanum-pay
       - hanum-pay-dashboard
+      - auth
+      - festival
     environment:
       - TZ=Asia/Seoul
 
