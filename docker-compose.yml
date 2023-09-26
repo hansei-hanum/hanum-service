@@ -60,6 +60,8 @@ services:
     environment:
       - SERVER_TYPE=GRPC
       - TZ=Asia/Seoul
+    ports:
+      - 50051:50051
     depends_on:
       - db
       - cache
