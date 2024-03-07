@@ -151,6 +151,7 @@ services:
       - --max-connections=344
       - --ft-min-word-len=1
       - --innodb-ft-min-token-size=1
+      - --ft-stopword-file=''
 
   cache:
     image: redis:4
