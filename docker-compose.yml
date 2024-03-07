@@ -149,6 +149,8 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
       - --max-connections=344
+      - --ft-min_word-len=2
+      - --innodb-ft-min-token-size = 2
 
   cache:
     image: redis:4
