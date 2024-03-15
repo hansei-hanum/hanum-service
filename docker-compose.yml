@@ -6,7 +6,7 @@ services:
   ##        한움리크루트      ##
   ##############################
   recruit-frontend:
-    build: ./services/recruit-frontend
+    build: ./services/hanowl-recruit
     restart: always
     networks:
       - default
