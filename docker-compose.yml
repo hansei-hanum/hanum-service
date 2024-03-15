@@ -3,6 +3,19 @@ version: '3'
 
 services:
   ##############################
+  ##        한움리크루트      ##
+  ##############################
+  recruit-frontend:
+    build: ./services/recruit-frontend
+    restart: always
+    networks:
+      - default
+    ports:
+      - 5521:3000
+    environment:
+      - TZ=Asia/Seoul
+      
+  ##############################
   ##          대나무숲         ##
   ##############################
   community:

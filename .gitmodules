@@ -19,3 +19,6 @@
 [submodule "services/community"]
 	path = services/community
 	url = https://github.com/hansei-hanum/hanum-backend-community.git
+[submodule "services/hanowl-recruit"]
+	path = services/hanowl-recruit
+	url = https://github.com/hanowwl/hanowl.com
