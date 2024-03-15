@@ -1,3 +1,6 @@
+.env/
 .data/
 .config/
 .logs/
+
+.env

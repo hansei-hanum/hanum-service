@@ -1,12 +1,45 @@
 version: '3'
 
+
 services:
+  ##############################
+  ##          대나무숲         ##
+  ##############################
+  community:
+    build: 
+      context: ./services/community
+      args:
+        - NUGET_USERNAME=${NUGET_USERNAME}
+        - NUGET_PASSWORD=${NUGET_PASSWORD}
+    restart: always
+    user: "${DATA_USER_ID}:${DATA_GROUP_ID}"
+    volumes:
+      - ./.data/community/media/:/app/media/
+      - ./.logs/community/:/app/logs/
+    depends_on:
+      - db
+      - auth-grpc
+    ports:
+      - 5516:80
+    networks:
+      - default
+      - internal
+    environment:
+      - TZ=Asia/Seoul
+
   ##############################
   ##          한움페이         ##
   ##############################
   hanum-pay:
-    build: ./services/hanum-pay
+    build:
+      context: ./services/hanum-pay
+      args:
+        - NUGET_USERNAME=${NUGET_USERNAME}
+        - NUGET_PASSWORD=${NUGET_PASSWORD}
     restart: always
+    user: "${DATA_USER_ID}:${DATA_GROUP_ID}"
+    volumes:
+      - ./.logs/pay/:/app/logs/
     depends_on:
       - db
       - cache
@@ -34,7 +67,7 @@ services:
       - TZ=Asia/Seoul
 
   ##############################
-  ##          인증서버          ##
+  ##          인증서버         ##
   ##############################
   auth:
     build: ./services/auth
@@ -52,9 +85,8 @@ services:
       - internal
 
   ##############################
-  ##        한세어울림한마당       ##
+  ##       한세어울림한마당     ##
   ##############################
-
   festival:
     build: ./services/festival
     restart: always
@@ -136,6 +168,7 @@ services:
     restart: always
     env_file:
       - ./.config/mysql.env
+    user: "${DATA_USER_ID}:${DATA_GROUP_ID}"
     volumes:
       - ./.data/mysql/:/var/lib/mysql
       # 서순주의
@@ -156,6 +189,7 @@ services:
   cache:
     image: redis:4
     restart: always
+    user: "${DATA_USER_ID}:${DATA_GROUP_ID}"
     volumes:
       - .data/redis:/data
     ports:

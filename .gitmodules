@@ -16,3 +16,6 @@
 [submodule "services/festival"]
 	path = services/festival
 	url = https://github.com/hansei-hanum/hanum-backend-festival.git
+[submodule "services/community"]
+	path = services/community
+	url = https://github.com/hansei-hanum/hanum-backend-community.git
