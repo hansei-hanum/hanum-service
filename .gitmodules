@@ -22,3 +22,6 @@
 [submodule "services/hanowl-recruit"]
 	path = services/hanowl-recruit
 	url = https://github.com/hanowwl/hanowl.com
+[submodule "services/recruit"]
+	path = services/recruit
+	url = https://github.com/hansei-hanum/hanum-backend-recruit-notion.git

@@ -3,6 +3,29 @@ version: '3'
 
 services:
   ##############################
+  ##     한울리크루트 백엔드   ##
+  ##############################
+  recruit:
+    build: 
+      context: ./services/recruit
+      args:
+        - NUGET_USERNAME=${NUGET_USERNAME}
+        - NUGET_PASSWORD=${NUGET_PASSWORD}
+    restart: always
+    user: "${DATA_USER_ID}:${DATA_GROUP_ID}"
+    volumes:
+      - ./.logs/recruit/:/app/logs/
+    depends_on:
+      - auth-grpc
+    ports:
+      - 5517:80
+    networks:
+      - default
+      - internal
+    environment:
+      - TZ=Asia/Seoul
+
+  ##############################
   ##        한움리크루트      ##
   ##############################
   recruit-frontend:
