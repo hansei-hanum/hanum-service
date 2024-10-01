@@ -81,7 +81,7 @@ services:
       - cache
       - auth-grpc
     ports:
-      - 5510:80
+      - 5510:8080
     networks:
       - default
       - internal
