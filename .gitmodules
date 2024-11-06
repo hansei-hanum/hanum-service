@@ -25,3 +25,7 @@
 [submodule "services/recruit"]
 	path = services/recruit
 	url = https://github.com/hansei-hanum/hanum-backend-recruit-notion.git
+[submodule "services/esports"]
+	path = services/esports
+	url = https://github.com/hansei-hanum/hanum-backend-esports
+	branch = main
