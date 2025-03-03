@@ -29,3 +29,6 @@
 	path = services/esports
 	url = https://github.com/hansei-hanum/hanum-backend-esports
 	branch = main
+[submodule "services/community-filter"]
+	path = services/community-filter
+	url = https://github.com/hansei-hanum/hanum-community-filter
